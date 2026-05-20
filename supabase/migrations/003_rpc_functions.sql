@@ -2,7 +2,7 @@
 
 -- reserve_seat: atomically locks a seat and creates a booking.
 -- uses FOR UPDATE to prevent double-booking race conditions.
--- security definer so the seat update bypasses RLS (only this function can do it).
+-- security definer so the seat update bypasses RLS
 create or replace function public.reserve_seat(
   p_user_id     uuid,
   p_flight_id   uuid,
