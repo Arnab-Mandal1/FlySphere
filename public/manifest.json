@@ -1,6 +1,6 @@
 {
-  "name": "FlightManager",
-  "short_name": "FlightManager",
+  "name": "FlySphere",
+  "short_name": "FlySphere",
   "description": "Search and book flights, pick your seat, manage your bookings.",
   "start_url": "/",
   "scope": "/",

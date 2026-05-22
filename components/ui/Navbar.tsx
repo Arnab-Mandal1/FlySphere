@@ -32,7 +32,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 font-bold text-lg hover:opacity-90 transition-opacity">
             <Plane className="w-6 h-6 text-sky-400" />
-            <span>FlightManager</span>
+            <span>FlySphere</span>
           </Link>
 
           {/* Desktop nav */}
