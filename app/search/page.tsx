@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Plane, ArrowLeftRight, Calendar, Users, Search, Loader2 } from 'lucide-react'
 import { useFlightStore } from '@/lib/stores/useFlightStore'
@@ -13,7 +13,7 @@ const CLASS_OPTIONS: { value: SeatClass; label: string }[] = [
   { value: 'first',    label: 'First Class' },
 ]
 
-export default function SearchPage() {
+function SearchPageInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { searchQuery, setSearchQuery, setCurrentStep } = useFlightStore()
@@ -188,5 +188,13 @@ export default function SearchPage() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense>
+      <SearchPageInner />
+    </Suspense>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { CheckCircle2, Plane, Copy, Check } from 'lucide-react'
@@ -10,7 +10,7 @@ import { useUserStore } from '@/lib/stores/useUserStore'
 import { formatDateTime, formatCurrency } from '@/lib/utils'
 import type { Booking } from '@/types'
 
-export default function ConfirmationPage() {
+function ConfirmationPageInner() {
   const searchParams = useSearchParams()
   const pnr = searchParams.get('pnr')
   const bookingId = searchParams.get('bookingId')
@@ -151,5 +151,13 @@ export default function ConfirmationPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ConfirmationPage() {
+  return (
+    <Suspense>
+      <ConfirmationPageInner />
+    </Suspense>
   )
 }
