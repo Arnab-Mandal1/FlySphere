@@ -40,15 +40,16 @@ export function FlightResultsList({ flights, seatClass, passengers }: FlightResu
     )
   }
 
-  const handleSelect = (flight: Flight) => {
-    const timeUntilDeparture = new Date(flight.departs_at).getTime() - Date.now()
+  const isWithinCutoff = (departsAt: string): boolean => {
     const oneHourMs = 60 * 60 * 1000
+    return new Date(departsAt).getTime() - new Date().getTime() <= oneHourMs
+  }
 
-    if (timeUntilDeparture <= oneHourMs) {
+  const handleSelect = (flight: Flight) => {
+    if (isWithinCutoff(flight.departs_at)) {
       setCutoffError(`Bookings for flight ${flight.flight_no} are closed. Booking closes 1 hour before departure.`)
       return
     }
-
     setSelectedFlight(flight)
     setCurrentStep('seat')
     router.push(`/seat-map/${flight.id}`)
