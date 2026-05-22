@@ -14,7 +14,7 @@ interface SearchResultsPageProps {
   }>
 }
 
-export default async function SearchResultsPage({ searchParams }: SearchResultsPageProps) {
+export default async function SearchResultsPage({ searchParams }: Readonly<SearchResultsPageProps>) {
   const params = await searchParams
   const { origin, destination, date, passengers, class: seatClass } = params
 
